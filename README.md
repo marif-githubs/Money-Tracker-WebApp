@@ -4,3 +4,5 @@ task 2 :Money Tracker WebApp
 A money tracker app for
 managing expenses and income using
 HTML, CSS, Node.js, and MongoDB.
+click to view(ui)
+https://marif-githubs.github.io/Money-Tracker-WebApp/
