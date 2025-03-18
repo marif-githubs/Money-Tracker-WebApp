@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Track Money</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <style>
+        /* body{
+        } */
+        .box {
+            display: none;
+            width: 390px;
+            height: 300px;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        img {
+            width: 25px;
+            height: 20px;
+        }
+
+        #TI,
+        #TE,
+        #RB {
+            font-size: large;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container border border-5 border-bottom-0 border-top-0">
+
+        <!-- {{!-- nav-bar --}} -->
+        <nav class="navbar bg-dark border-bottom border-body" style="border-radius: 5px;" data-bs-theme="dark">
+            <div class="container-fluid ">
+                <a class="navbar-brand">Track Money</a>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+
+        <!-- {{!-- score board --}} -->
+        <div class="container text-center" style="margin: 30px;">
+            <div class="row">
+                <div class="col order-last">
+                    <h6>Total Income</h6>
+                    <p id="TI">-</p>
+                </div>
+                <div class="col">
+                    <h6>Remaining Balance:</h6>
+                    <p id="RB">-</p>
+                </div>
+                <div class="col order-first">
+                    <h6>Total Expence:</h6>
+                    <p id="TE">-</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- {{!-- {{{body}}} --}} -->
+        <div class="border border-success border-bottom-0 mb-2" >
+            <ul class="nav nav-tabs" id="myTab" role="tablist" >
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane"
+                        type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true"><img
+                            src="https://cdn-icons-png.flaticon.com/512/2040/2040520.png" alt="plus"></button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane"
+                        type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false"><img
+                            src="https://cdn-icons-png.flaticon.com/512/2040/2040522.png" alt="minus"></button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane"
+                        type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false"><img
+                            src="https://cdn-icons-png.flaticon.com/512/1907/1907617.png" alt="assets"></button>
+                </li>
+            </ul>
+        </div>
+
+        <!-- {{!-- income page --}} -->
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab"
+                tabindex="0">
+
+                <!-- {{!-- income table --}} -->
+                <table class="table" id="incomes-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Incomes</th>
+                            <th scope="col" style="text-align: right;">Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-group-divider">
+                        <!-- {{!-- table rows are added here--}} -->
+                    </tbody>
+                </table>
+
+                <!-- {{!-- income add button --}} -->
+                <div class="d-grid gap-2 col-6 mx-auto">
+                    <button class="btn btn-success" type="button" onclick="displayForm(1 , 'income-box-form')">Add
+                        Income</button>
+                </div>
+
+                <!-- {{!-- income add form --}} -->
+                <div class="box shadow-lg p-3 mb-5 bg-body-tertiary rounded" id="income-box-form">
+                    <form id="income-form">
+                        <div class="input-group mb-3">
+                            <div class="form-floating" style="width: 150px;">
+                                <input type="text" class="form-control" name="title" id="income-title"
+                                    placeholder="Title" required maxlength="20">
+                                <label for="floatingInput">Title</label>
+                            </div>
+                            <div>
+                                <span class="input-group-text" style="height: 100%;">:</span>
+                            </div>
+                            <div class="form-floating" style="width: 50px;">
+                                <input type="number" class="form-control" name="amount" id="income-amount"
+                                    placeholder="Amount" required>
+                                <label for="floatingPassword">Amount</label>
+                            </div>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <textarea class="form-control" name="discription" placeholder="Discription"
+                                id="income-discription" style="height: 140px"></textarea>
+                            <label for="income-discription">Discription</label>
+                        </div>
+
+                        <div class="form-floating mb-3" style="display: flex; flex-direction: row;">
+                            <button type="button" class="btn btn-success" style="width: 50%; margin-right: 8px"
+                                onclick="displayForm(2 , 'income-box-form')">Cancel</button>
+                            <button type="submit" class="btn btn-success"
+                                style="width: 50%; margin-left: 8px">Add</button>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+
+            <!-- {{!-- expence_page --}} -->
+            <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+
+                <table class="table" id="expence-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Expence</th>
+                            <th scope="col" style="text-align: right;">Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-group-divider">
+
+                    </tbody>
+                </table>
+
+                <!-- {{!-- add Expence button --}} -->
+                <div class="d-grid gap-2 col-6 mx-auto">
+                    <button class="btn btn-success" type="button" onclick="displayForm(1 , 'expence-box-form')">Add
+                        Expence</button>
+                </div>
+
+                <!-- {{!-- add expence form --}} -->
+                <div class="box shadow-lg p-3 mb-5 bg-body-tertiary rounded" id="expence-box-form">
+                    <form id="expence-form">
+                        <div class="input-group mb-3">
+                            <div class="form-floating" style="width: 150px;">
+                                <input type="text" class="form-control" name="title" id="income-title"
+                                    placeholder="Title" maxlength="20" required>
+                                <label for="floatingInput">Title</label>
+                            </div>
+                            <div>
+                                <span class="input-group-text" style="height: 100%;">:</span>
+                            </div>
+                            <div class="form-floating" style="width: 50px;">
+                                <input type="number" class="form-control" name="amount" id="income-amount"
+                                    placeholder="Amount" required>
+                                <label for="floatingPassword">Amount</label>
+                            </div>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <textarea class="form-control" name="discription" placeholder="Discription"
+                                id="income-discription" style="height: 140px"></textarea>
+                            <label for="income-discription">Discription</label>
+                        </div>
+
+                        <div class="form-floating mb-3" style="display: flex; flex-direction: row;">
+                            <button type="button" class="btn btn-success" style="width: 50%; margin-right: 8px"
+                                onclick="displayForm(2 , 'expence-box-form')">Cancel</button>
+                            <button type="submit" class="btn btn-success"
+                                style="width: 50%;margin-left: 8px">Add</button>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+
+            <!-- {{!-- asset page --}} -->
+            <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
+
+                <table class="table" id="assets-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Assets</th>
+                            <th scope="col" style="text-align: right;">Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-group-divider">
+                        <tr>
+                            <th scope="col">$</th>
+                            <th>@Total</th>
+                            <th id="totalAssets" style="text-align: right;"></th>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <!-- {{!-- add assets button --}} -->
+                <div class="d-grid gap-2 col-6 mx-auto">
+                    <button class="btn btn-success" type="button"
+                        onclick="displayForm(1 , 'assets-box-form')">Assets</button>
+                </div>
+
+                <!-- {{!-- add assets form --}} -->
+                <div class="box shadow-lg p-3 mb-5 bg-body-tertiary rounded" id="assets-box-form">
+                    <form id="assets-form">
+                        <div class="input-group mb-3">
+                            <div class="form-floating" style="width: 150px;">
+                                <input type="text" class="form-control" name="title" id="income-title"
+                                    placeholder="Title" maxlength="20" required>
+                                <label for="floatingInput">Title</label>
+                            </div>
+                            <div>
+                                <span class="input-group-text" style="height: 100%;">:</span>
+                            </div>
+                            <div class="form-floating" style="width: 50px;">
+                                <input type="number" class="form-control" name="amount" id="income-amount"
+                                    placeholder="Amount" required>
+                                <label for="floatingPassword">Amount</label>
+                            </div>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <textarea class="form-control" name="discription" placeholder="Discription"
+                                id="income-discription" style="height: 140px"></textarea>
+                            <label for="income-discription">Discription</label>
+                        </div>
+
+                        <div class="form-floating mb-3" style="display: flex; flex-direction: row;">
+                            <button type="button" class="btn btn-success" style="width: 50%; margin-right: 8px"
+                                onclick="displayForm(2 , 'assets-box-form')">Cancel</button>
+                            <button type="submit" class="btn btn-success"
+                                style="width: 50%;margin-left: 8px">Add</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    </div>
+    </div>
+
+</body>
+
+<script>
+
+    var incomeData;
+    var expenceData;
+    var assetsData;
+
+    function displayForm(num, id) {
+        if (num == 1) {
+            document.getElementById(id).style.display = 'block';
+        } else if (num == 2) {
+            document.getElementById(id).style.display = 'none';
+        } else {
+
+        }
+    }
+
+
+    function dashboard(data, tableId) {
+        var result = 0;
+        if (tableId == 'incomes-table') {
+            data.forEach(item =>
+                result = result + parseInt(item.amount));
+            document.getElementById('TI').innerHTML = result;
+            var opp = document.getElementById("TE").textContent;
+            document.getElementById('RB').innerHTML = result - parseInt(opp);
+
+        } else if (tableId == 'expence-table') {
+            data.forEach(item =>
+                result = result - item.amount);
+            document.getElementById('TE').innerHTML = result;
+            var opp = document.getElementById("TI").textContent;
+            document.getElementById('RB').innerHTML = parseInt(opp) + result;
+        } else {
+            data.forEach(item =>
+                result = result + parseInt(item.amount));
+            document.getElementById('totalAssets').innerHTML = result;
+        }
+        //return sum;
+    }
+
+    function DateTime() {
+        var currentDate = new Date();
+        var day = currentDate.getDate();
+        var month = currentDate.getMonth() + 1;
+        var year = currentDate.getFullYear();
+        var hours = currentDate.getHours();
+        var minutes = currentDate.getMinutes();
+        var seconds = currentDate.getSeconds();
+        var formattedDateTime = day + '/' + month + '/' + year + ' ' + hours + ':' + minutes + ':' + seconds;
+        return formattedDateTime;
+    }
+
+
+    function formEvents(formid, incomeformBox, api1, tableId) {
+        const form = document.querySelector(formid);
+        form.addEventListener("submit", event => {
+            event.preventDefault();
+            const formdata = new FormData(form);
+            const data = Object.fromEntries(formdata);
+            data.Date = DateTime();
+            console.log(data);
+            fetch(api1, {
+                method: 'post',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(res => res.json())
+                .then(data => console.log(data))
+                .catch(error => {
+                    console.log(error);
+                });
+            form.reset();
+            displayForm(2, incomeformBox);
+            addRow(data, tableId);
+            if (tableId == 'incomes-table') {
+                incomeData.push(data);
+                dashboard(incomeData, tableId);
+            } else if (tableId == 'expence-table') {
+                expenceData.push(data);
+                dashboard(expenceData, tableId);
+            } else {
+                assetsData.push(data);
+                dashboard(assetsData, tableId);
+            }
+
+        });
+    }
+
+
+    function addRow(data, tableid) {
+        table = document.getElementById(tableid);
+        var row = table.insertRow(1);
+        row.insertCell(0).innerHTML = '*';
+        row.insertCell(1).innerHTML = data.title;
+        row.insertCell(2).innerHTML = data.amount;
+        const cells = row.getElementsByTagName('td');
+        cells[2].style.textAlign = 'right';
+    }
+
+
+    function fetchFromServer(table) {
+        return new Promise((resolve, reject) => {
+            fetch(table)
+                .then(res => res.json())
+                .then(data => {
+                    //console.log(data);
+                    resolve(data);
+                })
+                .catch(error => {
+                    console.error('Error fetching data:', error);
+                    reject(error);
+                });
+        });
+    }
+
+    function addDataToTable(tableId, api2) {
+        const table = document.getElementById(tableId);
+        fetchFromServer(api2)
+            .then(data => {
+                //console.log('Fetched data:', data);
+                data.forEach(item => {
+                    var row = table.insertRow(1);
+                    row.insertCell(0).innerHTML = '*'
+                    row.insertCell(1).innerHTML = item.title;
+                    row.insertCell(2).innerHTML = item.amount;
+                    const cells = row.getElementsByTagName('td');
+                    cells[2].style.textAlign = 'right';
+                });
+                dashboard(data, tableId);
+                if (tableId == 'incomes-table') {
+                    incomeData = data;
+                } else if (tableId == 'expence-table') {
+                    expenceData = data;
+                } else {
+                    assetsData = data;
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
+
+    addDataToTable('incomes-table', '/incomeTable');
+    addDataToTable('expence-table', '/expenceTable');
+    addDataToTable('assets-table', '/assetsTable');
+
+    formEvents('#income-form', 'income-box-form', `/income-form`, "incomes-table");
+    formEvents('#expence-form', 'expence-box-form', `/expence-form`, 'expence-table');
+    formEvents('#assets-form', 'assets-box-form', `/assets-form`, 'assets-table');
+
+</script>
+
+</html>
+
+<!-- 
+{{!--
+function addDate(formid) {
+const formT = document.querySelector(formid);
+const newInput = document.createElement('input');
+newInput.type = 'date';
+newInput.id = 'date';
+newInput.name = 'date';
+newInput.value = DateTime();
+formT.appendChild(newInput);
+} --}} -->
