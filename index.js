@@ -16,19 +16,6 @@ const client = new MongoClient(uri);
 client.connect();
 
 const dbName = "Track_Money_DB";
-// const collectionName = "Data";
-
-// Define the 'express-handlebars' engine
-// const engine = handlebars.create({
-//     defaultLayout: 'main',
-//     layoutsDir: 'views/layouts',
-//     partialsDir: 'views/partials',
-// });
-
-// Use the 'express-handlebars' engine with the app
-// app.engine('handlebars', engine.engine);
-// app.set('view engine', 'handlebars');
-// app.set('views', 'views');
 
 // Add your routes here
 app.get('/', (req, res,next) => {
@@ -111,23 +98,3 @@ const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}:http://localhost:4000`);
 });
-
-// npm start
-
-// app.post('/signup-post', (req, res) => {
-//     const formData = req.body;
-//     console.log('Form data submitted:', formData);
-//     res.json({ message: 'Form submitted successfully!' });
-
-// async function fetchFromDB(collectionName) {
-//         try {
-//             const cursor = await client.db(dbName).collection(collectionName).find().limit(5);
-//             await cursor.forEach(temp => {
-//                 console.log(temp)
-//             });
-//             return data;
-//             console.log('now')
-//         } catch (err) {
-//             console.error(`Something went wrong trying to find the documents: ${err}\n`);
-//         }
-// }
