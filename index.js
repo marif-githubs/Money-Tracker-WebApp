@@ -3,13 +3,13 @@ const express = require('express');
 const { MongoClient } = require('mongodb');
 const path = require('path');
 const bodyParser = require('body-parser');
-
+const dotenv = require("dotenv").config();
 const app = express();
 
 app.use(express.json());
 // app.use(express.static(path.join(__dirname,"static")))
 
-const uri = "mongodb+srv://syedmarif:xR91fydWB4tBZ6XM@cluster0.1gxqioy.mongodb.net/?retryWrites=true&w=majority"
+const uri = process.env.DATABASE_URL;
 
 const client = new MongoClient(uri);
 
