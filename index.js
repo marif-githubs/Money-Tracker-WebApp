@@ -19,7 +19,7 @@ const dbName = "Track_Money_DB";
 
 // Add your routes here
 app.get('/', (req, res,next) => {
-    res.sendFile(path.join(__dirname,"index.html"))
+    res.sendFile(path.join(__dirname,"public/index.html"))
 
 });
 
